@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 17:30:29 by sivinska          #+#    #+#             */
-/*   Updated: 2018/06/18 18:47:09 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/06/26 13:53:50 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include "ft_printf.h"
+# include "get_next_line.h"
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -96,8 +98,8 @@ void				ft_putchar_unicode(unsigned int c);
 void				ft_putnbr_longlong(long long n);
 int					ft_unicode_len(unsigned int c);
 unsigned long long	ft_atoi_longlong(const char *str);
-long long			ft_atoi_signed(const char *str);
 int					ft_pow(int nbr, int times);
 int					ft_get_nbr_len_unsigned(unsigned long long n);
+long long			ft_atoi_signed(const char *str);
 
 #endif

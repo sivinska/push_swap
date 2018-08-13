@@ -18,6 +18,7 @@ int		main(int argc, char **argv)
 	int			i;
 	t_element	*list;
 	t_data		*data;
+	char		*command;
 
 	list = 0;
 	i = 1;
@@ -39,10 +40,17 @@ int		main(int argc, char **argv)
 	if (duplicate(list) == 0)
 		return (0);
 	data = create_table(list);
-	data->count = argc - 1;
-	data->size_a = argc - 1;
-	if (data->count < 6)
-		sort_5(data);
+	while (get_next_line(0, &command) == 1)
+	{
+		if (commander(data, command) == 0)
+		{
+			ft_putendl_fd("Error", 2);
+			free(command);
+			return (1);
+		}
+		free(command);
+	}
+	(is_sorted(data->a) == 1 && data->b == NULL ? ft_putendl("OK") : ft_putendl("KO"));
 	return (0);
 }
 

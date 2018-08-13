@@ -1,26 +1,45 @@
 NAME_1 = checker
 
-SRC = check_parameters.c \
-	push_swap.c
+NAME_2 = push_swap
+
+SRC = check_parameters.c commander.c commands.c sort_5.c
 
 OBJ = $(SRC:.c=.o)
 
-INC = -I. -I./libft
+INC = -I. -I./libft -I./libft/ft_printf
+PUSHSWAP_H = push_swap.h
 
-FLAGS = -Wall -Wextra -Werror
+LIB_PATH = libft
+LIB_LINK = -L $(LIB_PATH) -lft
+LIB = $(LIB_PATH)/libft.a
 
-all: $(NAME_1)
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
-$(NAME_1): $(OBJ)
-	make -C libft/
-	gcc -c $(FLAGS) $(OBJ) $(INC) push_swap.c -o $(NAME_1)
+all: colour $(NAME_1) $(NAME_2)
+	@echo "Checker created."
+
+$(NAME_1): $(LIB) $(OBJ) checker.o
+	@gcc $(FLAGS) -o $@ $^ $(LIB_LINK)
+
+$(NAME_2): $(LIB) $(OBJ) push_swap.o
+	@gcc $(FLAGS) -o $@ $^ $(LIB_LINK)
+$(LIB):
+	@make -C $(LIB_PATH)
+
+%.o: %.c $(PUSHSWAP_H)
+	@gcc $(FLAGS) $(INC) -c -o $@ $<
+
+colour:
+	@echo "\x1b[1;32m"
 
 clean:
-	rm -rf $(OBJ)
-	make clean -C libft/
+	@rm -rf $(OBJ)
+	@make clean -C libft/
 
 fclean: clean
-	rm -rf $(NAME_1)
-	make fclean -C libft/
+	@rm -rf $(NAME_1) $(NAME_2)
+	@make fclean -C libft/
 
-re: fclean all	
+re: fclean all
+
+.PHONY: all clean fclean re	

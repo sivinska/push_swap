@@ -6,7 +6,7 @@
 #    By: sivinska <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/15 15:21:02 by sivinska          #+#    #+#              #
-#    Updated: 2018/06/18 18:52:15 by sivinska         ###   ########.fr        #
+#    Updated: 2018/06/26 14:11:01 by sivinska         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 FLAGS = -Wall -Wextra -Werror
 
-INC = -I.
+INC = -I. -I./ft_printf
 
 SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c\
 	ft_memchr.c ft_memcmp.c ft_strlen.c ft_strdup.c ft_strcpy.c\
@@ -32,21 +32,30 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c\
 	ft_get_nbr_len.c ft_putnbr_unsigned.c ft_putchar_ret.c \
 	ft_putchar_unicode.c ft_put_nbr_longlong.c ft_unicode_len.c \
 	ft_atoi_longlong.c ft_pow.c ft_get_nbr_len_unsigned.c \
-	ft_atoi_signed.c
+	get_next_line.c ft_atoi_signed.c
+
+PRINTF_DIR = ft_printf/
+PRINTF_SRC = char.c check_line.c flags.c helper.c hex.c integer.c long_char.c \
+			 long_string.c octal.c percent.c pointer.c print.c recheck_flags.c \
+			 rules.c string.c unsigned.c free_memory.c flag_type.c \
+			 send_strings.c
+
+PRINTF_OBJS = $(PRINTF_SRC:.c=.o)
+PRINTF_OBJ_SRC = $(addprefix $(PRINTF_DIR),$(PRINTF_SRC))
 
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
 
 $(NAME):
-	gcc -c $(FLAGS) $(SRC) $(INC)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@gcc -c $(FLAGS) $(SRC) $(PRINTF_OBJ_SRC) $(INC)
+	@ar rc $(NAME) $(OBJ) $(PRINTF_OBJS)
+	@ranlib $(NAME)
 
 clean:
-	/bin/rm -rf $(OBJ)
+	@/bin/rm -rf $(OBJ) $(PRINTF_OBJS)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 re: fclean all
