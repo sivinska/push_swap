@@ -18,40 +18,6 @@ int	smallest_number(t_element *stack)
 	return (min);
 }
 
-int	path_right(t_element *stack, int number)
-{
-	t_element	*cpy;
-	int		path_len;
-
-	cpy = stack;
-	path_len = 0;
-	while (cpy)
-	{
-		if (cpy->number == number)
-			break ;
-		path_len++;
-		cpy = cpy->next;
-	}
-	return (path_len);
-}
-
-int	path_left(t_element *stack, int number)
-{
-	t_element	*cpy;
-	int		path_len;
-
-	cpy = stack;
-	path_len = 0;
-	while (cpy)
-	{
-		if (cpy->number == number)
-			break ;
-		path_len++;
-		cpy = cpy->previous;
-	}
-	return (path_len);
-}
-
 void	find_shortest_and_go(t_data *data, int number)
 {
 	t_element	*cpy;

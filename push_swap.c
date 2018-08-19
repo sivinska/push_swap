@@ -43,8 +43,10 @@ int		main(int argc, char **argv)
 	data->size_a = argc - 1;
 	if (data->count < 6)
 		sort_5(data);
-	else if (data->count < 51)
-		sort_50(data);
+	else
+		smart_sort(data);
+	/*else if (data->count < 51)
+		sort_50(data);*/
 	return (0);
 }
 

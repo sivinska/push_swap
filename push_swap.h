@@ -52,4 +52,10 @@ void		reverse_rotate_b(t_data *data);
 void		reverse_rotate_both(t_data *data);
 void		sort_5(t_data *data);
 void		sort_50(t_data *data);
+int		ft_median(t_element *stack, int stack_size);
+void		smart_sort(t_data *data);
+int		path_right(t_element *stack, int number);
+int		path_left(t_element *stack, int number);
+int		biggest_number(t_element *stack);
+void		shortest_path_b(t_data *data, int number);
 #endif

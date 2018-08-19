@@ -2,55 +2,12 @@
 #include "push_swap.h"
 #include<stdio.h>
 
-int	ft_median(t_data *data)
-{
-	int		median;
-	int		*list_a;
-	t_element	*stack_a;
-	int		i;
-	int		j;
-	int		temp;
-
-	median = 0;
-	if (!(list_a = (int*)malloc(sizeof(int) * data->size_a)))
-		return (0);
-	stack_a = data->a;
-	i = 0;
-	while (stack_a->next)
-	{
-		list_a[i++] = stack_a->number;
-		if (stack_a->end)
-			break ;
-		stack_a = stack_a->next;
-	}
-	i = 0;
-	while (i < data->size_a - 1)
-	{
-		j = i + 1;
-		while(j < data->size_a)
-		{
-			if (list_a[i] > list_a[j])
-			{
-				temp = list_a[i];
-				list_a[i] = list_a[j];
-				list_a[j] = temp;
-			}
-			j++;	
-		}
-		i++;
-	}
-	median = list_a[data->size_a / 2];
-	free (list_a);	
-	return (median);
-}
-
-
 void	sort_50(t_data *data)
 {
 	int 		median;
 	int		total;
 
-	median = ft_median(data);
+	median = ft_median(data->a, data->size_a);
 	total = data->size_a;
 	while (data->size_a > (total / 2) + (total % 2))
 	{

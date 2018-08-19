@@ -2,7 +2,8 @@ NAME_1 = checker
 
 NAME_2 = push_swap
 
-SRC = check_parameters.c commander.c commands.c sort_5.c sort_50.c
+SRC = check_parameters.c commander.c commands.c sort_5.c sort_50.c utilities.c \
+	smart_sorting.c utilities2.c
 
 OBJ = $(SRC:.c=.o)
 
