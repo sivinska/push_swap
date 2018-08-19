@@ -12,6 +12,22 @@
 
 #include "push_swap.h"
 
+int		is_reverse_sorted(t_element *list)
+{
+	 while(list)
+	 {
+		 if (list->end)
+			 break;
+		 if (list->number <= list->next->number)
+			 return (0);
+		if (list->end)
+			break ; 
+		list = list->next;
+	 }
+	 return (1);
+
+}
+
 int		is_sorted(t_element *list)
 {
 	 while(list)

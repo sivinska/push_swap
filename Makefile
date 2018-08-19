@@ -2,7 +2,7 @@ NAME_1 = checker
 
 NAME_2 = push_swap
 
-SRC = check_parameters.c commander.c commands.c sort_5.c
+SRC = check_parameters.c commander.c commands.c sort_5.c sort_50.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -16,7 +16,7 @@ LIB = $(LIB_PATH)/libft.a
 FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 all: colour $(NAME_1) $(NAME_2)
-	@echo "Checker created."
+	@echo "Checker and push_swap created."
 
 $(NAME_1): $(LIB) $(OBJ) checker.o
 	@gcc $(FLAGS) -o $@ $^ $(LIB_LINK)
@@ -33,7 +33,7 @@ colour:
 	@echo "\x1b[1;32m"
 
 clean:
-	@rm -rf $(OBJ)
+	@rm -rf $(OBJ) push_swap.o checker.o
 	@make clean -C libft/
 
 fclean: clean

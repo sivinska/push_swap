@@ -84,12 +84,6 @@ void	find_shortest_and_go(t_data *data, int number)
 
 void	sort_5(t_data *data)
 {
-	t_element	*stack_a;
-        t_element       *stack_b;
-
-	stack_a = data->a;
-	stack_b = data->b;
-	
 	while (data->size_a > 3)
 		find_shortest_and_go(data, smallest_number(data->a));
 
@@ -99,6 +93,11 @@ void	sort_5(t_data *data)
 		{
 			swap_a(data);
 			write(1, "sa\n", 3);
+		}
+		else if (data->a->number < data->a->previous->number)
+		{
+			reverse_rotate_a(data);
+			write(1, "rra\n", 4);
 		}
 		else
 		{
