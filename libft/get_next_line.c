@@ -5,56 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/06 17:27:26 by sivinska          #+#    #+#             */
-/*   Updated: 2018/02/13 12:21:56 by sivinska         ###   ########.fr       */
+/*   Created: 2018/09/05 09:26:50 by sivinska          #+#    #+#             */
+/*   Updated: 2018/09/05 09:27:00 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		store(int i, int j, char *buffer, char **line)
+int		store_line(int i, int j, char *buf, char **line)
 {
-	char	*tmp;
-	char	*tmp2;
+	char			*tmp;
+	char			*tmp2;
 
-	while (buffer[i] && buffer[i] != '\n')
+	while (buf[i] && buf[i] != '\n')
 		i++;
 	tmp = ft_strnew(i - j);
-	ft_strncpy(tmp, buffer + j, (i - j));
+	ft_strncpy(tmp, buf + j, (i - j));
 	tmp2 = *line;
 	*line = ft_strjoin(tmp2, tmp);
 	free(tmp2);
 	free(tmp);
-	if (buffer[i] == '\n')
-		return (i);
-	else
-		return (-1);
+	return (buf[i] == '\n' ? i : -1);
 }
 
 int		get_next_line(const int fd, char **line)
 {
-	static char	*buffer[OPEN_MAX];
-	int			i[OPEN_MAX];
-	int			ret[OPEN_MAX];
+	static	t_b a;
 
-	if (fd < 0 || line == NULL || BUFF_SIZE <= 0 || fd >= OPEN_MAX)
+	if (fd < 0 || line == NULL || BUFF_SIZE <= 0)
 		return (-1);
 	*line = ft_strnew(0);
-	if (buffer[fd] == NULL)
-		buffer[fd] = ft_strnew(BUFF_SIZE);
-	if (i[fd] > 0)
+	if (!a.buf[fd])
+		a.buf[fd] = ft_strnew(BUFF_SIZE);
+	if (a.i[fd] > 0)
 	{
-		i[fd] = store(i[fd], i[fd], buffer[fd], line);
-		if (i[fd]++ != -1)
+		a.i[fd] = store_line(a.i[fd], a.i[fd], a.buf[fd], line);
+		if (a.i[fd]++ != -1)
 			return (1);
 	}
-	while (i[fd] == 0 && (ret[fd] = read(fd, buffer[fd], BUFF_SIZE)) > 0)
+	while (a.i[fd] == 0 && (a.ret[fd] = read(fd, a.buf[fd], BUFF_SIZE)) != 0
+		&& a.ret[fd] != -1)
 	{
-		buffer[fd][ret[fd]] = '\0';
-		i[fd] = store(i[fd], i[fd], buffer[fd], line);
-		i[fd]++;
+		a.buf[fd][a.ret[fd]] = 0;
+		a.i[fd] = store_line(a.i[fd], a.i[fd], a.buf[fd], line);
+		a.i[fd]++;
 	}
-	if (ret[fd] == -1)
+	if (a.ret[fd] == -1)
 		return (-1);
-	return ((ret[fd] == 0 && *line[0] == 0) ? 0 : 1);
+	return (a.ret[fd] == 0 && *line[0] == 0 ? 0 : 1);
 }

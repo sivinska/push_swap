@@ -52,7 +52,25 @@ int	path_left(t_element *stack, int number)
 	return (path_len);
 }
 
+int	ft_average(t_element *stack, int stack_size)
+{
+	int			average;
+	t_element *cpy;
+	t_element *end;
 
+	cpy = stack;
+	end = stack;
+	average = 0;
+	while (cpy)
+	{
+		average += cpy->number;
+
+		cpy = cpy->next;
+		if (cpy == end)
+			break ;
+	}
+	return (average / stack_size);
+}
 
 int	ft_median(t_element *stack, int stack_size)
 {

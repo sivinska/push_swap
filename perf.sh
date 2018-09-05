@@ -1,4 +1,4 @@
-num=500
+num=100
 case=100
 limit=5300
 

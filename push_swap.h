@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:34:35 by sivinska          #+#    #+#             */
-/*   Updated: 2018/06/18 19:14:50 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/05 16:25:24 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,6 @@ int		path_right(t_element *stack, int number);
 int		path_left(t_element *stack, int number);
 int		biggest_number(t_element *stack);
 void		shortest_path_b(t_data *data, int number);
+int		ft_average(t_element *stack, int number);
+int		smallest_number(t_element *stack);
 #endif
