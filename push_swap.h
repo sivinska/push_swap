@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:34:35 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/05 16:25:24 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/06 14:03:54 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,6 @@ int		biggest_number(t_element *stack);
 void		shortest_path_b(t_data *data, int number);
 int		ft_average(t_element *stack, int number);
 int		smallest_number(t_element *stack);
+void	find_shortest_and_go(t_data *data, int number);
+
 #endif
