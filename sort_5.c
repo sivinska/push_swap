@@ -33,7 +33,7 @@ void	find_shortest_and_go(t_data *data, int number)
 		while (path_len_right--)
 		{
 			rotate_a(data);
-			write(1, "ra\n", 3);
+			ft_add_step(data, TYPE_RA);
 		}
 	}
 	else 
@@ -41,15 +41,20 @@ void	find_shortest_and_go(t_data *data, int number)
 		while (path_len_left--)
 		{
 			reverse_rotate_a(data);
-			write(1, "rra\n", 4);
+			ft_add_step(data, TYPE_RRA);
 		}
 	}
 	push_to_b(data);
-	write(1, "pb\n", 3);
+	ft_add_step(data, TYPE_PB);
 }
 
 void	sort_5(t_data *data)
 {
+	if (data->a->number > data->a->next->number)
+	{
+		swap_a(data);
+		ft_add_step(data, TYPE_SA);
+	}
 	while (data->size_a > 3)
 		find_shortest_and_go(data, smallest_number(data->a));
 
@@ -58,28 +63,28 @@ void	sort_5(t_data *data)
 		if (data->a->number > data->a->next->number)
 		{
 			swap_a(data);
-			write(1, "sa\n", 3);
+			ft_add_step(data, TYPE_SA);
 		}
 		else if (data->a->number < data->a->previous->number)
 		{
 			reverse_rotate_a(data);
-			write(1, "rra\n", 4);
+			ft_add_step(data, TYPE_RRA);
 		}
 		else
 		{
 			rotate_a(data);
-			write(1, "ra\n", 3);
+			ft_add_step(data, TYPE_RA);
 		}
 	} 
 	if (is_sorted(data->b) && data->b)
 	{
 		swap_b(data);
-		write(1, "sb\n", 3);
+		ft_add_step(data, TYPE_SB);
 	}
 	while (data->size_b)
 	{
 		push_to_a(data);
-		write(1, "pa\n", 3);
+		ft_add_step(data, TYPE_PA);
 	}
 
 	/*t_element *a = data->a;

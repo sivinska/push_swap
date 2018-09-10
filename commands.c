@@ -12,6 +12,7 @@ t_data		*create_table(t_element *list)
 	data->size_a = 0;
 	data->size_b = 0;
 	data->count = 0;
+	data->steps = NULL;
 	return (data);
 }
 
