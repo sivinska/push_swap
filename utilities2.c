@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 07:56:05 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/10 16:57:28 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/11 15:19:11 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	shortest_path_b(t_data *data, int biggest, int smallest)
 {
-	t_element	*cpy;
+	t_elemt	*cpy;
 	int		biggest_path_len_right;
 	int		biggest_path_len_left;
 	int		smallest_path_len_right;
@@ -71,7 +71,7 @@ void	shortest_path_b(t_data *data, int biggest, int smallest)
 	}
 }
 
-int	second_biggest(t_element *stack)
+int	second_biggest(t_elemt *stack)
 {
 	int		max;
 	int		second_max;

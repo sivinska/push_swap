@@ -6,13 +6,13 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 07:56:32 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/07 15:58:10 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/11 15:18:20 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	biggest_number(t_element *stack)
+int	biggest_number(t_elemt *stack)
 {
 	int	max;
 
@@ -28,9 +28,9 @@ int	biggest_number(t_element *stack)
 	return (max);
 }
 
-int	path_right(t_element *stack, int number)
+int	path_right(t_elemt *stack, int number)
 {
-	t_element	*cpy;
+	t_elemt	*cpy;
 	int		path_len;
 
 	cpy = stack;
@@ -45,9 +45,9 @@ int	path_right(t_element *stack, int number)
 	return (path_len);
 }
 
-int	path_left(t_element *stack, int number)
+int	path_left(t_elemt *stack, int number)
 {
-	t_element	*cpy;
+	t_elemt	*cpy;
 	int		path_len;
 
 	cpy = stack;
@@ -62,11 +62,11 @@ int	path_left(t_element *stack, int number)
 	return (path_len);
 }
 
-int	ft_average(t_element *stack, int stack_size)
+int	ft_average(t_elemt *stack, int stack_size)
 {
-	int			average;
-	t_element *cpy;
-	t_element *end;
+	int		average;
+	t_elemt *cpy;
+	t_elemt *end;
 
 	cpy = stack;
 	end = stack;
@@ -74,7 +74,6 @@ int	ft_average(t_element *stack, int stack_size)
 	while (cpy)
 	{
 		average += cpy->number;
-
 		cpy = cpy->next;
 		if (cpy == end)
 			break ;
@@ -82,7 +81,7 @@ int	ft_average(t_element *stack, int stack_size)
 	return (average / stack_size);
 }
 
-int	ft_median(t_element *stack, int stack_size)
+int	ft_median(t_elemt *stack, int stack_size)
 {
 	int		median;
 	int		*list;
@@ -105,7 +104,7 @@ int	ft_median(t_element *stack, int stack_size)
 	while (i < stack_size - 1)
 	{
 		j = i + 1;
-		while(j < stack_size)
+		while (j < stack_size)
 		{
 			if (list[i] > list[j])
 			{
@@ -118,6 +117,6 @@ int	ft_median(t_element *stack, int stack_size)
 		i++;
 	}
 	median = list[stack_size / 2];
-	free (list);
+	free(list);
 	return (median);
 }

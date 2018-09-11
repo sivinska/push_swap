@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 10:01:52 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/10 16:58:54 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/11 15:10:39 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,9 @@ void	sorting_stacka(t_data *data)
 			ft_add_step(data, TYPE_RA);
 		}
 	}
-
 }
 
-void		smart_sort(t_data *data)
+void	smart_sort(t_data *data)
 {
 	int	median_a;
 
@@ -77,7 +76,6 @@ void		smart_sort(t_data *data)
 		{
 			swap_a(data);
 			ft_add_step(data, TYPE_SA);
-
 		}
 		else if (data->a->number < data->a->previous->number)
 		{
@@ -92,38 +90,8 @@ void		smart_sort(t_data *data)
 	}
 	while (data->b)
 	{
-
-		shortest_path_b(data, biggest_number(data->b), smallest_number(data->b));
-		/*if (data->b->number > ft_(data->b, data->size_b))
-		{
-
-			if (data->b->number < data->b->next->number)
-			{
-				swap_b(data);
-				write(1, "sb\n", 3);
-			}
-			else if (data->b->number < data->b->previous->number)
-			{
-				reverse_rotate_b(data);
-				write(1, "rrb\n", 4);
-			}
-			else
-			{
-				push_to_a(data);
-				write(1, "pa\n", 3);
-			}
-		}
-		else
-		{
-			rotate_b(data);
-			write(1, "rb\n", 3);
-		}*/
-//		sorting_stacka(data);
-/*		if (data->size_b <= 3)
-		{
-			push_to_a(data);
-			write(1, "pa\n", 3);
-		}*/
+		shortest_path_b(data, biggest_number(data->b), \
+			smallest_number(data->b));
 	}
 	while (!is_sorted(data->a))
 	{

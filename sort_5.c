@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_5.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/11 15:11:55 by sivinska          #+#    #+#             */
+/*   Updated: 2018/09/11 15:15:27 by sivinska         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-int	smallest_number(t_element *stack)
+int		smallest_number(t_elemt *stack)
 {
-	int	min;
+	int		min;
 
 	min = stack->number;
 	while (stack)
@@ -20,14 +31,13 @@ int	smallest_number(t_element *stack)
 
 void	find_shortest_and_go(t_data *data, int number)
 {
-	t_element	*cpy;
+	t_elemt	*cpy;
 	int		path_len_right;
 	int		path_len_left;
 
 	cpy = data->a;
 	path_len_right = path_right(cpy, number);
 	path_len_left = path_left(cpy, number);
-
 	if (path_len_right < path_len_left)
 	{
 		while (path_len_right--)
@@ -36,7 +46,7 @@ void	find_shortest_and_go(t_data *data, int number)
 			ft_add_step(data, TYPE_RA);
 		}
 	}
-	else 
+	else
 	{
 		while (path_len_left--)
 		{
@@ -57,7 +67,6 @@ void	sort_5(t_data *data)
 	}
 	while (data->size_a > 3)
 		find_shortest_and_go(data, smallest_number(data->a));
-
 	while (!(is_sorted(data->a)))
 	{
 		if (data->a->number > data->a->next->number)
@@ -75,7 +84,7 @@ void	sort_5(t_data *data)
 			rotate_a(data);
 			ft_add_step(data, TYPE_RA);
 		}
-	} 
+	}
 	if (is_sorted(data->b) && data->b)
 	{
 		swap_b(data);
@@ -86,27 +95,4 @@ void	sort_5(t_data *data)
 		push_to_a(data);
 		ft_add_step(data, TYPE_PA);
 	}
-
-	/*t_element *a = data->a;
-	t_element *b = data->b;
-	ft_putstr("Stack A: ");
-	while (a)
-	{
-		ft_putnbr(a->number);
-		ft_putchar(' ');
-		if (a->end == 1)
-			break ;
-		a = a->next;
-	}
-	ft_putchar('\n');
-	ft_putstr("Stack B: ");
-	while (b)
-	{
-		ft_putnbr(b->number);
-		ft_putchar(' ');
-		if (b->end == 1)
-			break ;
-		b = b->next;
-	}
-	ft_putchar('\n');*/
 }

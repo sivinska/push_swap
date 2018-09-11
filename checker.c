@@ -6,17 +6,17 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:38:15 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/04 17:33:20 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/11 15:00:57 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include<stdio.h>
+#include <stdio.h>
 
 int		main(int argc, char **argv)
 {
 	int			i;
-	t_element	*list;
+	t_elemt	*list;
 	t_data		*data;
 	char		*command;
 
@@ -50,34 +50,7 @@ int		main(int argc, char **argv)
 		}
 		free(command);
 	}
-	(is_sorted(data->a) == 1 && data->b == NULL ? ft_putendl("OK") : ft_putendl("KO"));
+	(is_sorted(data->a) == 1 && data->b == NULL ? \
+	ft_putendl("OK") : ft_putendl("KO"));
 	return (0);
 }
-
-int		duplicate(t_element *list)
-{
-	t_element	*temp;
-	
-	temp = list;
-	while (list)
-	{
-		while (temp)
-		{
-			if (temp->number == list->number && temp != list)
-			{
-				ft_putendl_fd("Error", 2);
-				return (0);
-			}
-			if (temp->end)
-				break;
-			temp = temp->next;
-	}
-		temp = temp->next;
-		if (list->end)
-			break;
-		list = list->next;
-	}
-	return (1);
-}
-
-

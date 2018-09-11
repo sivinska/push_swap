@@ -1,7 +1,18 @@
-# include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   commander.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/11 13:44:23 by sivinska          #+#    #+#             */
+/*   Updated: 2018/09/11 15:01:06 by sivinska         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "push_swap.h"
 
-int	commander(t_data *data, char *command)
+int		commander(t_data *data, char *command)
 {
 	if (command == 0 || ft_strlen(command) < 2 || ft_strlen(command) > 3)
 		return (0);
@@ -29,27 +40,5 @@ int	commander(t_data *data, char *command)
 		reverse_rotate_both(data);
 	else
 		return (0);
-	t_element *a = data->a;
-	t_element *b = data->b;
-	ft_putstr("Stack A: ");
-	while (a)
-	{
-		ft_putnbr(a->number);
-		ft_putchar(' ');
-		if (a->end == 1)
-			break ;
-		a = a->next;
-	}
-	ft_putchar('\n');
-	ft_putstr("Stack B: ");
-	while (b)
-	{
-		ft_putnbr(b->number);
-		ft_putchar(' ');
-		if (b->end == 1)
-			break ;
-		b = b->next;
-	}
-	ft_putchar('\n');
 	return (1);
 }

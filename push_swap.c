@@ -6,17 +6,16 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:38:15 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/10 16:58:14 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/11 15:07:15 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include<stdio.h>
 
 int		main(int argc, char **argv)
 {
 	int			i;
-	t_element	*list;
+	t_elemt	*list;
 	t_data		*data;
 
 	list = 0;
@@ -45,37 +44,7 @@ int		main(int argc, char **argv)
 		sort_5(data);
 	else
 		smart_sort(data);
-	/*else if (data->count < 51)
-		sort_50(data);*/
 	optimize(data);
 	print_from_optimizer(data);
 	return (0);
 }
-
-int		duplicate(t_element *list)
-{
-	t_element	*temp;
-	
-	temp = list;
-	while (list)
-	{
-		while (temp)
-		{
-			if (temp->number == list->number && temp != list)
-			{
-				ft_putendl_fd("Error", 2);
-				return (0);
-			}
-			if (temp->end)
-				break;
-			temp = temp->next;
-	}
-		temp = temp->next;
-		if (list->end)
-			break;
-		list = list->next;
-	}
-	return (1);
-}
-
-

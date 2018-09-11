@@ -6,39 +6,66 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:07:12 by sivinska          #+#    #+#             */
-/*   Updated: 2018/06/18 19:18:00 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/11 15:00:27 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		is_reverse_sorted(t_element *list)
-{
-	 while(list)
-	 {
-		 if (list->end)
-			 break;
-		 if (list->number <= list->next->number)
-			 return (0);
-		if (list->end)
-			break ; 
-		list = list->next;
-	 }
-	 return (1);
+/*
+**int		is_reverse_sorted(t_element *list)
+**{
+**	while (list)
+**	{
+**		if (list->end)
+**			break ;
+**		if (list->number <= list->next->number)
+**			return (0);
+**		if (list->end)
+**			break ;
+**		list = list->next;
+**	}
+**	return (1);
+**}
+*/
 
+int		duplicate(t_elemt *list)
+{
+	t_elemt	*temp;
+
+	temp = list;
+	while (list)
+	{
+		while (temp)
+		{
+			if (temp->number == list->number && temp != list)
+			{
+				ft_putendl_fd("Error", 2);
+				return (0);
+			}
+			if (temp->end)
+				break ;
+			temp = temp->next;
+		}
+		temp = temp->next;
+		if (list->end)
+			break ;
+		list = list->next;
+	}
+	return (1);
 }
 
-int		is_sorted(t_element *list)
+int		is_sorted(t_elemt *list)
 {
-	 while(list)
-	 {
-		 if (list->end)
-			 break;
-		 if (list->number >= list->next->number)
-			 return (0);
-		 list = list->next;
-	 }
-	 return (1);
+	while (list)
+	{
+		if (list->end)
+			break ;
+		if (list->number >= list->next->number)
+			return (0);
+		list = list->next;
+	}
+	return (1);
 }
 
 int		check_digits(char *string)
@@ -54,17 +81,17 @@ int		check_digits(char *string)
 		string++;
 	while (ft_isdigit(string[i]))
 		i++;
-	if (string[i] != '\0' || i == 0 )
+	if (string[i] != '\0' || i == 0)
 		return (0);
 	else
 		return (1);
 }
 
-int		fill_elements(t_element **list, int new)
+int		fill_elements(t_elemt **list, int new)
 {
-	t_element	*element;
+	t_elemt	*element;
 
-	if (!(element = (t_element*)malloc(sizeof(t_element))))
+	if (!(element = (t_elemt*)malloc(sizeof(t_elemt))))
 		return (0);
 	element->end = 1;
 	element->number = new;
@@ -85,3 +112,17 @@ int		fill_elements(t_element **list, int new)
 	return (1);
 }
 
+t_data	*create_table(t_elemt *list)
+{
+	t_data	*data;
+
+	if (!(data = (t_data*)malloc(sizeof(t_data))))
+		return (NULL);
+	data->a = list;
+	data->b = NULL;
+	data->size_a = 0;
+	data->size_b = 0;
+	data->count = 0;
+	data->steps = NULL;
+	return (data);
+}

@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 15:53:18 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/10 17:11:19 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/11 15:01:18 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ void	ft_add_step(t_data *data, int type)
 		return ;
 	new->type = type;
 	new->next = NULL;
-
-	// data->steps   
-	// null arba not null
 	if (!data->steps)
 		data->steps = new;
 	else
