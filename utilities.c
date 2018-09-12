@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 07:56:32 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/11 15:18:20 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/12 15:00:09 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	path_left(t_elemt *stack, int number)
 	return (path_len);
 }
 
-int	ft_average(t_elemt *stack, int stack_size)
+int		ft_average(t_elemt *stack, int stack_size)
 {
 	int		average;
 	t_elemt *cpy;
@@ -81,13 +81,35 @@ int	ft_average(t_elemt *stack, int stack_size)
 	return (average / stack_size);
 }
 
-int	ft_median(t_elemt *stack, int stack_size)
+void	dummy_sort(int **list, int stack_size)
+{
+	int		i;
+	int		j;
+	int		temp;
+
+	i = 0;
+	while (i < stack_size - 1)
+	{
+		j = i + 1;
+		while (j < stack_size)
+		{
+			if ((*list)[i] > (*list)[j])
+			{
+				temp = (*list)[i];
+				(*list)[i] = (*list)[j];
+				(*list)[j] = temp;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+int		ft_median(t_elemt *stack, int stack_size)
 {
 	int		median;
 	int		*list;
 	int		i;
-	int		j;
-	int		temp;
 
 	median = 0;
 	if (!(list = (int*)malloc(sizeof(int) * stack_size)))
@@ -100,22 +122,7 @@ int	ft_median(t_elemt *stack, int stack_size)
 			break ;
 		stack = stack->next;
 	}
-	i = 0;
-	while (i < stack_size - 1)
-	{
-		j = i + 1;
-		while (j < stack_size)
-		{
-			if (list[i] > list[j])
-			{
-				temp = list[i];
-				list[i] = list[j];
-				list[j] = temp;
-			}
-			j++;
-		}
-		i++;
-	}
+	dummy_sort(&list, stack_size);
 	median = list[stack_size / 2];
 	free(list);
 	return (median);

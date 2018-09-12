@@ -6,11 +6,12 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:38:15 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/11 15:07:15 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/12 15:24:28 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 int		main(int argc, char **argv)
 {
@@ -22,7 +23,13 @@ int		main(int argc, char **argv)
 	i = 1;
 	if (argc == 1)
 		return (1);
-	while (i < argc)
+
+	if (parser(argc, argv, &list) == 0)
+	{
+		ft_putendl_fd("Error", 2);
+		return (1);
+	}
+/*	while (i < argc)
 	{
 		if (check_digits(argv[i]))
 		{
@@ -34,12 +41,12 @@ int		main(int argc, char **argv)
 			ft_putendl_fd("Error", 2);
 			return (1);
 		}
-	}
-	if (duplicate(list) == 0)
-		return (0);
+	}*/
 	data = create_table(list);
-	data->count = argc - 1;
-	data->size_a = argc - 1;
+	if (duplicate(list, data) == 0)
+		return (0);
+//	data = create_table(list);
+	data->size_a = data->count;
 	if (data->count < 6)
 		sort_5(data);
 	else

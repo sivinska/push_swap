@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:34:35 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/11 15:07:54 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/12 13:35:59 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define TYPE_RRA 8
 # define TYPE_RRB 9
 # define TYPE_RRR 10
+# define TYPE_SS 11
 
 # include "libft.h"
 
@@ -32,6 +33,7 @@ typedef struct		s_elemt
 	struct s_elemt	*next;
 	struct s_elemt	*previous;
 	int				end;
+	int				count;
 }					t_elemt;
 
 typedef struct		s_data
@@ -52,7 +54,7 @@ typedef struct		s_steps
 
 int					check_digits(char *string);
 int					fill_elements(t_elemt **list, int number);
-int					duplicate(t_elemt *list);
+int					duplicate(t_elemt *list, t_data *data);
 int					is_sorted(t_elemt *list);
 int					is_reverse_sorted(t_elemt *list);
 int					commander(t_data *data, char *command);
@@ -83,5 +85,7 @@ int					second_biggest(t_elemt *stack);
 void				ft_add_step(t_data *data, int type);
 void				print_from_optimizer(t_data *data);
 void				optimize(t_data *data);
-
+int					parser(int argc, char **argv, t_elemt **list);
+void				free_tab(char ***str);
+int					ft_isnumeric(const char *str);
 #endif

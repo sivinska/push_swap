@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 15:53:18 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/11 15:01:18 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/11 15:24:50 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ void	optimize(t_data *data)
 			cpy->next = next->next;
 			free(next);
 		}
+		else if (cpy->type == TYPE_SA && next->type == TYPE_SB)
+		{
+			cpy->type = TYPE_SS;
+			cpy->next = next->next;
+			free(next);
+		}
 		cpy = cpy->next;
 	}
 }
@@ -74,6 +80,8 @@ void	print_from_optimizer(t_data *data)
 			write(1, "ra\n", 3);
 		if (cpy->type == TYPE_SB)
 			write(1, "sb\n", 3);
+		if (cpy->type == TYPE_SS)
+			write(1, "ss\n", 3);
 		if (cpy->type == TYPE_PB)
 			write(1, "pb\n", 3);
 		if (cpy->type == TYPE_RB)

@@ -6,16 +6,14 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 13:44:23 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/11 15:01:06 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/12 14:51:14 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		commander(t_data *data, char *command)
+int		commander_help(t_data *data, char *command)
 {
-	if (command == 0 || ft_strlen(command) < 2 || ft_strlen(command) > 3)
-		return (0);
 	if (ft_strcmp(command, "sa") == 0)
 		swap_a(data);
 	else if (ft_strcmp(command, "sb") == 0)
@@ -41,4 +39,11 @@ int		commander(t_data *data, char *command)
 	else
 		return (0);
 	return (1);
+}
+
+int		commander(t_data *data, char *command)
+{
+	if (command == 0 || ft_strlen(command) < 2 || ft_strlen(command) > 3)
+		return (0);
+	return (commander_help(data, command));
 }

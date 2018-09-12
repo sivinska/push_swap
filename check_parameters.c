@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:07:12 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/11 15:00:27 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/12 15:23:58 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 **}
 */
 
-int		duplicate(t_elemt *list)
+int		duplicate(t_elemt *list, t_data *data)
 {
 	t_elemt	*temp;
 
@@ -43,11 +43,12 @@ int		duplicate(t_elemt *list)
 				ft_putendl_fd("Error", 2);
 				return (0);
 			}
-			if (temp->end)
+			if (temp->end == 1)
 				break ;
 			temp = temp->next;
 		}
 		temp = temp->next;
+		data->count++;
 		if (list->end)
 			break ;
 		list = list->next;
@@ -79,7 +80,7 @@ int		check_digits(char *string)
 	i = 0;
 	if (*string == '-')
 		string++;
-	while (ft_isdigit(string[i]))
+	while (ft_isdigit(string[i]) || string[i] == ' ')
 		i++;
 	if (string[i] != '\0' || i == 0)
 		return (0);
@@ -102,12 +103,14 @@ int		fill_elements(t_elemt **list, int new)
 		(*list)->previous->next = element;
 		(*list)->previous = element;
 		element->previous->end = 0;
+		element->count = element->previous->count + 1;
 	}
 	else
 	{
 		*list = element;
 		element->next = element;
 		element->previous = element;
+		element->count = 1;
 	}
 	return (1);
 }

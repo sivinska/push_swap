@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 10:01:52 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/11 15:10:39 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/12 14:20:56 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ void	sorting_stacka(t_data *data)
 	}
 }
 
+#include <stdio.h>
+
 void	smart_sort(t_data *data)
 {
 	int	median_a;
-
+	
 	while (data->size_a > 3)
 	{
 		median_a = ft_average(data->a, data->size_a);
@@ -93,7 +95,7 @@ void	smart_sort(t_data *data)
 		shortest_path_b(data, biggest_number(data->b), \
 			smallest_number(data->b));
 	}
-	while (!is_sorted(data->a))
+	while (!(is_sorted(data->a)))
 	{
 		reverse_rotate_a(data);
 		ft_add_step(data, TYPE_RRA);
