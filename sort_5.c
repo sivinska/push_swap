@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 15:11:55 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/11 15:15:27 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/13 16:34:28 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,39 +60,35 @@ void	find_shortest_and_go(t_data *data, int number)
 
 void	sort_5(t_data *data)
 {
-	if (data->a->number > data->a->next->number)
-	{
-		swap_a(data);
-		ft_add_step(data, TYPE_SA);
-	}
 	while (data->size_a > 3)
 		find_shortest_and_go(data, smallest_number(data->a));
+	
 	while (!(is_sorted(data->a)))
 	{
 		if (data->a->number > data->a->next->number)
 		{
 			swap_a(data);
-			ft_add_step(data, TYPE_SA);
+			write(1, "sa\n", 3);
 		}
 		else if (data->a->number < data->a->previous->number)
 		{
 			reverse_rotate_a(data);
-			ft_add_step(data, TYPE_RRA);
+			write(1, "rra\n", 4);
 		}
 		else
 		{
 			rotate_a(data);
-			ft_add_step(data, TYPE_RA);
+			write(1, "ra\n", 3);
 		}
-	}
+	} 
 	if (is_sorted(data->b) && data->b)
 	{
 		swap_b(data);
-		ft_add_step(data, TYPE_SB);
+		write(1, "sb\n", 3);
 	}
 	while (data->size_b)
 	{
 		push_to_a(data);
-		ft_add_step(data, TYPE_PA);
+		write(1, "pa\n", 3);
 	}
 }

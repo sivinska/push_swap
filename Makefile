@@ -3,7 +3,8 @@ NAME_1 = checker
 NAME_2 = push_swap
 
 SRC = check_parameters.c commander.c sort_5.c utilities.c smart_sorting.c \
-	utilities2.c optimizer.c swap.c rotate.c reverse_rotate.c push.c parser.c
+	utilities2.c optimizer.c swap.c rotate.c reverse_rotate.c push.c parser.c \
+	sort_big.c
 
 OBJ = $(SRC:.c=.o)
 

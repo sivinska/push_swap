@@ -6,13 +6,13 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 10:01:52 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/12 14:20:56 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/14 14:44:11 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sorting_stacka(t_data *data)
+/*void	sorting_stacka(t_data *data)
 {
 	int	average;
 
@@ -37,9 +37,7 @@ void	sorting_stacka(t_data *data)
 			ft_add_step(data, TYPE_RA);
 		}
 	}
-}
-
-#include <stdio.h>
+}*/
 
 void	smart_sort(t_data *data)
 {
@@ -74,7 +72,8 @@ void	smart_sort(t_data *data)
 	}
 	while (!(is_sorted(data->a)))
 	{
-		if (data->a->number > data->a->next->number)
+		if (data->a->number > data->a->next->number && data->a->number < \
+				data->a->previous->number)
 		{
 			swap_a(data);
 			ft_add_step(data, TYPE_SA);

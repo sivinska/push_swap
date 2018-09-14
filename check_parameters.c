@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:07:12 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/12 15:23:58 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/14 15:24:53 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,12 @@ int		fill_elements(t_elemt **list, int new)
 		(*list)->previous->next = element;
 		(*list)->previous = element;
 		element->previous->end = 0;
-		element->count = element->previous->count + 1;
 	}
 	else
 	{
 		*list = element;
 		element->next = element;
 		element->previous = element;
-		element->count = 1;
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:34:35 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/12 13:35:59 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/14 11:07:51 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,7 @@ void				optimize(t_data *data);
 int					parser(int argc, char **argv, t_elemt **list);
 void				free_tab(char ***str);
 int					ft_isnumeric(const char *str);
+void				sort_big(t_data *data);
+void				dummy_sort(int **list, int stack_size);
+
 #endif

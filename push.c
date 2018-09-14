@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 14:40:59 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/12 14:43:16 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/14 09:56:28 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,24 +82,6 @@ void	push_to_b(t_data *data)
 		last->next = first;
 		data->a = first;
 	}
-/*	if (!(data->b))
-	{
-		data->b = current;
-		data->b->next = current;
-		data->b->previous = current;
-		data->b->end = 1;
-	}
-	else
-	{
-		first = data->b;
-		last = data->b->previous;
-		first->previous = current;
-		last->next = current;
-		data->b = current;
-		current->next = first;
-		current->previous = last;
-		current->end = 0;
-	}*/
 	push_to_helper(&(data->b), first, last, current);
 	data->size_b++;
 	data->size_a--;

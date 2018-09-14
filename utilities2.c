@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 07:56:05 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/12 15:18:07 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/14 14:32:20 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	shortest_path_b(t_data *data, int biggest, int smallest)
 	ft_add_step(data, TYPE_PA);
 	if (using)
 	{
+		if (data->size_b == 0 && is_sorted(data->a))
+			return ;
 		rotate_a(data);
 		ft_add_step(data, TYPE_RA);
 	}
