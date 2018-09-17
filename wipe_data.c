@@ -1,53 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/12 12:05:01 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/17 16:46:06 by sivinska         ###   ########.fr       */
+/*   Created: 2018/09/12 09:57:31 by sivinska          #+#    #+#             */
+/*   Updated: 2018/09/17 15:56:11 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-int		parser(int argc, char **argv, t_elemt **list)
+void	wipe_data(t_data **data)
 {
-	char	**tab;
-	int	i;
-	int	j;
+	t_elemt		*a;
+	t_elemt		*b;
+	t_steps		*steps;
+	t_elemt		*tmp;
+	t_steps		*tmp2;
 
-	i = 1;
-	while (i < argc)
+	a = (*data)->a;
+	b = (*data)->b;
+	steps = (*data)->steps;
+	while (a->end != 1)
 	{
-		if (ft_isnumeric(argv[i]))
-		{
-			fill_elements(list, ft_atoi(argv[i]));
-		}
-		else
-		{
-			tab = ft_strsplit(argv[i], ' ');
-			j = 0;
-			while (tab[j])
-			{
-				if (check_digits(tab[j]))
-				{
-					fill_elements(list, ft_atoi(tab[j]));
-				}
-				else
-				{
-					free_tab(&tab);
-					return (0);
-				}
-				j++;
-			}
-			free_tab(&tab);
-		}
-		i++;
+		tmp = a;
+		a = a->next;
+		free(tmp);
 	}
-	return (1);
+	free(a);
+	if (b)
+	{
+		while (b->end != 1)
+		{
+			tmp = b;
+			b = b->next;
+			free(tmp);
+		}
+		free(b);
+	}
+	while (steps)
+	{
+		tmp2 = steps;
+		steps = steps->next;
+		free(tmp2);
+	}
+	free(*data);
 }
 
 

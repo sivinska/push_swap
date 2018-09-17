@@ -4,7 +4,7 @@ NAME_2 = push_swap
 
 SRC = check_parameters.c commander.c sort_5.c utilities.c smart_sorting.c \
 	utilities2.c optimizer.c swap.c rotate.c reverse_rotate.c push.c parser.c \
-	sort_big.c
+	sort_big.c wipe_data.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -15,7 +15,8 @@ LIB_PATH = libft
 LIB_LINK = -L $(LIB_PATH) -lft
 LIB = $(LIB_PATH)/libft.a
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g 
+#-fsanitize=address
 
 all: colour $(NAME_1) $(NAME_2)
 	@echo "Checker and push_swap created."

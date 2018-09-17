@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:34:35 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/14 11:07:51 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/17 14:52:11 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,5 @@ void				free_tab(char ***str);
 int					ft_isnumeric(const char *str);
 void				sort_big(t_data *data);
 void				dummy_sort(int **list, int stack_size);
-
+void				wipe_data(t_data **data);
 #endif

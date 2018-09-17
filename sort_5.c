@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 15:11:55 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/13 16:34:28 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/17 08:52:22 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	find_shortest_and_go(t_data *data, int number)
 
 void	sort_5(t_data *data)
 {
-	while (data->size_a > 3)
+	while (data->size_a > 2)
 		find_shortest_and_go(data, smallest_number(data->a));
 	
 	while (!(is_sorted(data->a)))

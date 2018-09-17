@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 09:27:12 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/05 09:27:20 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/17 15:09:07 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 
 typedef	struct	s_struct
 {
-	int			i[2147483648];
-	int			ret[2147483648];
-	char		*buf[2147483648];
+	int			i[21474836];
+	int			ret[21474836];
+	char		*buf[21474836];
 }				t_b;
 
 int				get_next_line(const int fd, char **line);

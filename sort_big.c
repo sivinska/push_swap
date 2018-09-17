@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 10:53:13 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/14 15:28:31 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/17 14:19:07 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	sort_big(t_data *data)
 {
 	int		part[3];
 	int		size;
-	int target;
+	int		target;
 
 	get_part(data->a, data->size_a, part);
 	size = data->size_a / 4;
@@ -71,7 +71,6 @@ void	sort_big(t_data *data)
 			ft_add_step(data, TYPE_RA);
 		}
 	}
-
 	while (data->size_a > 2 * size)
 	{	
 		if (data->a->number < part[1])

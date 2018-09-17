@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:38:15 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/14 14:50:28 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/17 15:58:29 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int		main(int argc, char **argv)
 	data = create_table(list);
 	if (duplicate(list, data) == 0)
 		return (0);
+//	free(list->next);
 //	data = create_table(list);
 	data->size_a = data->count;
 	if (data->count <= 100)
@@ -53,5 +54,6 @@ int		main(int argc, char **argv)
 		sort_big(data);
 	optimize(data);
 	print_from_optimizer(data);
+	wipe_data(&data);
 	return (0);
 }
