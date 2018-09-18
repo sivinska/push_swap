@@ -6,12 +6,11 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 09:57:31 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/17 15:56:11 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/18 10:14:51 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 void	wipe_data(t_data **data)
 {
@@ -49,5 +48,3 @@ void	wipe_data(t_data **data)
 	}
 	free(*data);
 }
-
-

@@ -6,63 +6,38 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 10:01:52 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/17 12:22:07 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/18 14:45:48 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*void	sorting_stacka(t_data *data)
+void	presort_b(t_data *data)
 {
-	int	average;
-
-	if (is_sorted(data->a))
-		return ;
-	while (!is_sorted(data->a))
+	if (data->b->number < ft_median(data->b, data->size_b))
 	{
-		average = ft_average(data->a, data->size_a);
-		if (data->a->number < average)
+		if (data->b->number > data->b->next->number)
 		{
-			if (data->a->number > data->a->next->number)
-			{
-				swap_a(data);
-				ft_add_step(data, TYPE_SA);
-			}
-			push_to_b(data);
-			ft_add_step(data, TYPE_PB);
+			swap_b(data);
+			ft_add_step(data, TYPE_SB);
 		}
 		else
 		{
-			rotate_a(data);
-			ft_add_step(data, TYPE_RA);
+			rotate_b(data);
+			ft_add_step(data, TYPE_RB);
 		}
 	}
-}*/
+}
 
-void	smart_sort(t_data *data)
+void	push_presort_b(t_data *data)
 {
-	int	median_a;
-	
 	while (data->size_a > 3)
 	{
-		median_a = ft_average(data->a, data->size_a);
-		if (data->a->number < median_a)
+		if (data->a->number < ft_average(data->a, data->size_a))
 		{
 			push_to_b(data);
 			ft_add_step(data, TYPE_PB);
-			if (data->b->number < ft_median(data->b, data->size_b))
-			{
-				if (data->b->number > data->b->next->number)
-				{
-					swap_b(data);
-					ft_add_step(data, TYPE_SB);
-				}
-				else
-				{
-					rotate_b(data);
-					ft_add_step(data, TYPE_RB);
-				}
-			}
+			presort_b(data);
 		}
 		else
 		{
@@ -70,6 +45,10 @@ void	smart_sort(t_data *data)
 			ft_add_step(data, TYPE_RA);
 		}
 	}
+}
+
+void	sort_a(t_data *data)
+{
 	while (!(is_sorted(data->a)))
 	{
 		if (data->a->number > data->a->next->number && data->a->number < \
@@ -89,6 +68,10 @@ void	smart_sort(t_data *data)
 			ft_add_step(data, TYPE_RA);
 		}
 	}
+}
+
+void	push_rotate_a(t_data *data)
+{
 	while (data->b)
 	{
 		shortest_path_b(data, biggest_number(data->b), \
@@ -99,4 +82,11 @@ void	smart_sort(t_data *data)
 		reverse_rotate_a(data);
 		ft_add_step(data, TYPE_RRA);
 	}
+}
+
+void	smart_sort(t_data *data)
+{
+	push_presort_b(data);
+	sort_a(data);
+	push_rotate_a(data);
 }

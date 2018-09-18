@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 17:30:29 by sivinska          #+#    #+#             */
-/*   Updated: 2018/06/26 13:53:50 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/18 15:31:31 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,7 @@ unsigned long long	ft_atoi_longlong(const char *str);
 int					ft_pow(int nbr, int times);
 int					ft_get_nbr_len_unsigned(unsigned long long n);
 long long			ft_atoi_signed(const char *str);
+int					ft_isnumeric(const char *str);
+void				free_tab(char ***str);
 
 #endif

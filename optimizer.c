@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 15:53:18 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/17 14:52:14 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/18 16:00:40 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,28 @@ void	ft_add_step(t_data *data, int type)
 			cpy = cpy->next;
 		cpy->next = new;
 	}
+}
+
+void	help_optimize(t_steps *cpy, t_steps *next)
+{
+	if (cpy->type == TYPE_RA && next->type == TYPE_RB)
+		{
+			cpy->type = TYPE_RR;
+			cpy->next = next->next;
+			free(next);
+		}
+		else if (cpy->type == TYPE_RRA && next->type == TYPE_RRB)
+		{
+			cpy->type = TYPE_RRR;
+			cpy->next = next->next;
+			free(next);
+		}
+		else if (cpy->type == TYPE_SA && next->type == TYPE_SB)
+		{
+			cpy->type = TYPE_SS;
+			cpy->next = next->next;
+			free(next);
+		}
 }
 
 void	optimize(t_data *data)

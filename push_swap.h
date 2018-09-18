@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:34:35 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/17 14:52:11 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/18 15:34:33 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int					check_digits(char *string);
 int					fill_elements(t_elemt **list, int number);
 int					duplicate(t_elemt *list, t_data *data);
 int					is_sorted(t_elemt *list);
-int					is_reverse_sorted(t_elemt *list);
 int					commander(t_data *data, char *command);
 t_data				*create_table(t_elemt *list);
 void				swap_a(t_data *data);
@@ -70,8 +69,6 @@ void				rotate_both(t_data *data);
 void				reverse_rotate_a(t_data *data);
 void				reverse_rotate_b(t_data *data);
 void				reverse_rotate_both(t_data *data);
-void				sort_5(t_data *data);
-void				sort_50(t_data *data);
 int					ft_median(t_elemt *stack, int stack_size);
 void				smart_sort(t_data *data);
 int					path_right(t_elemt *stack, int number);
@@ -80,15 +77,14 @@ int					biggest_number(t_elemt *stack);
 void				shortest_path_b(t_data *data, int biggest, int smallest);
 int					ft_average(t_elemt *stack, int number);
 int					smallest_number(t_elemt *stack);
-void				find_shortest_and_go(t_data *data, int number);
-int					second_biggest(t_elemt *stack);
 void				ft_add_step(t_data *data, int type);
 void				print_from_optimizer(t_data *data);
 void				optimize(t_data *data);
 int					parser(int argc, char **argv, t_elemt **list);
-void				free_tab(char ***str);
-int					ft_isnumeric(const char *str);
 void				sort_big(t_data *data);
 void				dummy_sort(int **list, int stack_size);
 void				wipe_data(t_data **data);
+void				presort_b(t_data *data);
+void				sort_a(t_data *data);
+void				push_rotate_a(t_data *data);
 #endif
