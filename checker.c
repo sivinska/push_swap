@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 09:57:31 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/18 10:09:01 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/19 16:49:55 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ static int	get_the_line(char *command, t_data *data)
 	{
 		if (commander(data, command) == 0)
 		{
-			ft_putendl_fd("Error", 2);
+			ft_putendl_fd("Error: invalid command", 2);
 			free(command);
+			wipe_data(&data);
 			return (1);
 		}
 		free(command);
@@ -40,16 +41,18 @@ int			main(int argc, char **argv)
 		return (1);
 	if (parser(argc, argv, &list) == 0)
 	{
-		ft_putendl_fd("Error", 2);
+		ft_putendl_fd("Error: invalid input", 2);
+		wipe_element(list);
 		return (1);
 	}
 	data = create_table(list);
 	if (duplicate(list, data) == 0)
 	{
-		free(data);
+		wipe_data(&data);
 		return (0);
 	}
-	get_the_line(command, data);
+	if (get_the_line(command, data) == 1)
+		return (1);
 	(is_sorted(data->a) == 1 && data->b == NULL ? \
 	ft_putendl("OK") : ft_putendl("KO"));
 	wipe_data(&data);

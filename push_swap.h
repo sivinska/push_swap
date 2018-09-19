@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:34:35 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/18 15:34:33 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/19 16:31:17 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ void				wipe_data(t_data **data);
 void				presort_b(t_data *data);
 void				sort_a(t_data *data);
 void				push_rotate_a(t_data *data);
+void				wipe_element(t_elemt *list);
 #endif

@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 10:53:13 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/18 14:45:31 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/19 17:38:24 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,20 @@ void	sort_big(t_data *data)
 	size = data->size_a / 4;
 	target = data->size_a - size;
 	sort_quarter(data, &part[0], target);
-	sort_half(data, &part[1], size);
+//	sort_half(data, &part[1], size);
+	while (data->size_a > 2 * size)
+	{
+		if (data->a->number < part[1])
+		{
+			push_to_b(data);
+			ft_add_step(data, TYPE_PB);
+		}
+		else
+		{
+			rotate_a(data);
+			ft_add_step(data, TYPE_RA);
+		}
+	}
 	while (data->size_a > size)
 	{
 		if (data->a->number < part[2])
@@ -110,6 +123,7 @@ void	sort_big(t_data *data)
 			ft_add_step(data, TYPE_RA);
 		}
 	}
+//	return ;
 	sort_push_b(data);
 	sort_a(data);
 	push_rotate_a(data);

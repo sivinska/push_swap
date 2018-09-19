@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 07:56:05 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/18 15:53:28 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/19 10:53:36 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ int		path_finder(t_elemt *cpy, int biggest, int smallest, int *path_len_r)
 	return (bpl);
 }
 
+void	rotate_b_helper(t_data*data)
+{
+	rotate_b(data);
+	ft_add_step(data, TYPE_RB);
+}
+
 void	shortest_path_b(t_data *data, int biggest, int smallest)
 {
 	int		spr;
@@ -45,10 +51,7 @@ void	shortest_path_b(t_data *data, int biggest, int smallest)
 	{
 		using = (len_right == spr) ? 1 : using;
 		while (len_right--)
-		{
-			rotate_b(data);
-			ft_add_step(data, TYPE_RB);
-		}
+			rotate_b_helper(data);
 	}
 	else
 	{

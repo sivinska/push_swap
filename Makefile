@@ -15,7 +15,8 @@ LIB_PATH = libft
 LIB_LINK = -L $(LIB_PATH) -lft
 LIB = $(LIB_PATH)/libft.a
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror 
+#-g -fsanitize=address
 
 all: colour $(NAME_1) $(NAME_2)
 	@echo "Checker and push_swap created."

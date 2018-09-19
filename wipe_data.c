@@ -6,11 +6,24 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 09:57:31 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/18 10:14:51 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/19 11:03:31 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	wipe_element(t_elemt *list)
+{
+	t_elemt *tmp;
+
+	while (list->end != 1)
+	{
+		tmp = list;
+		list = list->next;
+		free(tmp);
+	}
+	free(list);
+}
 
 void	wipe_data(t_data **data)
 {
