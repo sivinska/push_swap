@@ -6,36 +6,42 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 07:56:05 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/19 10:53:36 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/20 13:36:19 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		path_finder(t_elemt *cpy, int biggest, int smallest, int *path_len_r)
-{
-	int		bpr;
-	int		bpl;
-	int		spr;
-	int		spl;
-
-	bpr = path_right(cpy, biggest);
-	bpl = path_left(cpy, biggest);
-	spr = path_right(cpy, smallest);
-	spl = path_left(cpy, smallest);
-	*path_len_r = (bpr > spr) ? spr : bpr;
-	if (bpl > spl)
-		return (spl);
-	return (bpl);
-}
-
-void	rotate_b_helper(t_data*data)
+static void	rotate_b_helper(t_data *data)
 {
 	rotate_b(data);
 	ft_add_step(data, TYPE_RB);
 }
 
-void	shortest_path_b(t_data *data, int biggest, int smallest)
+static void	rr_b_helper(t_data *data)
+{
+	reverse_rotate_b(data);
+	ft_add_step(data, TYPE_RRB);
+}
+
+static void	push_a_helper(t_data *data)
+{
+	push_to_a(data);
+	ft_add_step(data, TYPE_PA);
+}
+
+static void	using_helper(t_data *data, int using)
+{
+	if (using)
+	{
+		if (data->size_b == 0 && is_sorted(data->a))
+			return ;
+		rotate_a(data);
+		ft_add_step(data, TYPE_RA);
+	}
+}
+
+void		shortest_path_b(t_data *data, int biggest, int smallest)
 {
 	int		spr;
 	int		spl;
@@ -57,18 +63,8 @@ void	shortest_path_b(t_data *data, int biggest, int smallest)
 	{
 		using = (len_left == spl) ? 1 : using;
 		while (len_left--)
-		{
-			reverse_rotate_b(data);
-			ft_add_step(data, TYPE_RRB);
-		}
+			rr_b_helper(data);
 	}
-	push_to_a(data);
-	ft_add_step(data, TYPE_PA);
-	if (using)
-	{
-		if (data->size_b == 0 && is_sorted(data->a))
-			return ;
-		rotate_a(data);
-		ft_add_step(data, TYPE_RA);
-	}
+	push_a_helper(data);
+	using_helper(data, using);
 }

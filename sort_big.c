@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 10:53:13 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/19 17:38:24 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/20 13:52:58 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,25 @@ void	get_part(t_elemt *stack, int stack_size, int part[])
 	free(list);
 }
 
-void	sort_quarter(t_data *data, int part[], int target)
+int		exist_below(t_data *data, int nbr)
 {
-	while (data->size_a > target)
+	t_elemt		*a;
+
+	a = data->a;
+	while (a)
+	{
+		if (a->number < nbr)
+			return (1);
+		a = a->next;
+		if (a == data->a)
+			break ;
+	}
+	return (0);
+}
+
+void	sort_quarter(t_data *data, int part[])
+{
+	while (exist_below(data, part[0]))
 	{
 		if (data->a->number < part[0])
 		{
@@ -52,9 +68,9 @@ void	sort_quarter(t_data *data, int part[], int target)
 	}
 }
 
-void	sort_half(t_data *data, int part[], int size)
+void	sort_half(t_data *data, int part[])
 {
-	while (data->size_a > 2 * size)
+	while (exist_below(data, part[1]))
 	{
 		if (data->a->number < part[1])
 		{
@@ -71,9 +87,22 @@ void	sort_half(t_data *data, int part[], int size)
 
 void	sort_push_b(t_data *data)
 {
-	while (data->size_a > 3)
+	while (data->size_a > 4)
 	{
-		if (data->a->number < ft_average(data->a, data->size_a))
+		if (data->a->number < ft_median(data->a, data->size_a))
+		{
+			push_to_b(data);
+			ft_add_step(data, TYPE_PB);
+		}
+		else
+		{
+			rotate_a(data);
+			ft_add_step(data, TYPE_RA);
+		}
+	}
+	while (data->size_a == 4)
+	{
+		if (data->a->number == smallest_number(data->a))
 		{
 			push_to_b(data);
 			ft_add_step(data, TYPE_PB);
@@ -95,22 +124,9 @@ void	sort_big(t_data *data)
 	get_part(data->a, data->size_a, part);
 	size = data->size_a / 4;
 	target = data->size_a - size;
-	sort_quarter(data, &part[0], target);
-//	sort_half(data, &part[1], size);
-	while (data->size_a > 2 * size)
-	{
-		if (data->a->number < part[1])
-		{
-			push_to_b(data);
-			ft_add_step(data, TYPE_PB);
-		}
-		else
-		{
-			rotate_a(data);
-			ft_add_step(data, TYPE_RA);
-		}
-	}
-	while (data->size_a > size)
+	sort_quarter(data, &part[0]);
+	sort_half(data, &part[1]);
+	while (exist_below(data, part[2]))
 	{
 		if (data->a->number < part[2])
 		{
@@ -123,7 +139,6 @@ void	sort_big(t_data *data)
 			ft_add_step(data, TYPE_RA);
 		}
 	}
-//	return ;
 	sort_push_b(data);
 	sort_a(data);
 	push_rotate_a(data);

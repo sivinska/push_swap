@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:07:12 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/17 16:55:29 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/20 11:09:20 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,7 @@ t_data	*create_table(t_elemt *list)
 	data->size_b = 0;
 	data->count = 0;
 	data->steps = NULL;
+	data->visual = 0;
+	data->offsets = 0;
 	return (data);
 }

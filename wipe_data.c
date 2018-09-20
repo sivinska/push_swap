@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 09:57:31 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/19 11:03:31 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/20 14:34:59 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ void	wipe_element(t_elemt *list)
 	free(list);
 }
 
+/*static void	wipe_steps(t_steps *steps, t_steps *tmp2)
+{
+	while (steps)
+	{
+		tmp2 = steps;
+		steps = steps->next;
+		free(tmp2);
+	}
+}*/
+
 void	wipe_data(t_data **data)
 {
 	t_elemt		*a;
@@ -36,13 +46,17 @@ void	wipe_data(t_data **data)
 	a = (*data)->a;
 	b = (*data)->b;
 	steps = (*data)->steps;
-	while (a->end != 1)
+	tmp2 = NULL;
+	if (a)
 	{
-		tmp = a;
-		a = a->next;
-		free(tmp);
+		while (a->end != 1)
+		{
+			tmp = a;
+			a = a->next;
+			free(tmp);
+		}
+		free(a);
 	}
-	free(a);
 	if (b)
 	{
 		while (b->end != 1)

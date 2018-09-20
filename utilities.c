@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 07:56:32 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/18 16:16:03 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/20 13:52:15 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,21 @@ int	path_left(t_elemt *stack, int number)
 		cpy = cpy->previous;
 	}
 	return (path_len);
+}
+
+int	path_finder(t_elemt *cpy, int biggest, int smallest, int *path_len_r)
+{
+	int	bpr;
+	int	bpl;
+	int	spr;
+	int	spl;
+
+	bpr = path_right(cpy, biggest);
+	bpl = path_left(cpy, biggest);
+	spr = path_right(cpy, smallest);
+	spl = path_left(cpy, smallest);
+	*path_len_r = (bpr > spr) ? spr : bpr;
+	if (bpl > spl)
+		return (spl);
+	return (bpl);
 }

@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 09:57:31 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/19 16:49:55 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/20 11:40:54 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	get_the_line(char *command, t_data *data)
 {
+	visual(data, NULL);
 	while (get_next_line(0, &command) == 1)
 	{
 		if (commander(data, command) == 0)
@@ -23,6 +24,7 @@ static int	get_the_line(char *command, t_data *data)
 			wipe_data(&data);
 			return (1);
 		}
+		visual(data, command);
 		free(command);
 	}
 	free(command);
@@ -34,12 +36,14 @@ int			main(int argc, char **argv)
 	t_elemt		*list;
 	t_data		*data;
 	char		*command;
+	int			visual;
 
 	list = 0;
+	visual = 0;
 	command = NULL;
 	if (argc == 1)
 		return (1);
-	if (parser(argc, argv, &list) == 0)
+	if (parser(argc, argv, &list, &visual) == 0)
 	{
 		ft_putendl_fd("Error: invalid input", 2);
 		wipe_element(list);
@@ -51,6 +55,8 @@ int			main(int argc, char **argv)
 		wipe_data(&data);
 		return (0);
 	}
+	load_offsets(data);
+	data->visual = visual;
 	if (get_the_line(command, data) == 1)
 		return (1);
 	(is_sorted(data->a) == 1 && data->b == NULL ? \

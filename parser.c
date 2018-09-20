@@ -6,13 +6,13 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 12:05:01 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/19 11:01:18 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/20 13:27:18 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	help_parser(t_elemt **list, char **tab, int j)
+int		help_parser(t_elemt **list, char **tab, int j)
 {
 	while (tab[j])
 	{
@@ -31,13 +31,15 @@ int	help_parser(t_elemt **list, char **tab, int j)
 	return (1);
 }
 
-int		parser(int argc, char **argv, t_elemt **list)
+int		parser(int argc, char **argv, t_elemt **list, int *visual)
 {
 	char	**tab;
 	int		i;
 	int		j;
 
-	i = 1;
+	if (argc > 2 && ft_strcmp(argv[1], "-v") == 0)
+		*visual = 1;
+	i = 1 + *visual;
 	while (i < argc)
 	{
 		if (ft_isnumeric(argv[i]))
