@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 14:07:02 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/20 15:37:13 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/20 16:24:44 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	sort_two(t_data *data)
 		ft_add_step(data, TYPE_SA);
 	}
 }
+
 static void	sort_three(t_data *data)
 {
 	if (data->a->number > data->a->next->number && data->a->number < \
@@ -42,23 +43,12 @@ static void	sort_three(t_data *data)
 
 static void	sort_four(t_data *data)
 {
-	while (data->size_a == 4)
-	{
-		if (data->a->number == smallest_number(data->a))
-		{
-			push_to_b(data);
-			ft_add_step(data, TYPE_PB);
-		}
-		else
-		{
-			rotate_a(data);
-			ft_add_step(data, TYPE_RA);
-		}
-	}
+	smallest_infour(data);
 	sort_three(data);
 	push_to_a(data);
 	ft_add_step(data, TYPE_PA);
 }
+
 static void	push_presort_five(t_data *data)
 {
 	while (data->size_a > 3)

@@ -5,66 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/07 07:56:05 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/20 13:36:19 by sivinska         ###   ########.fr       */
+/*   Created: 2018/09/20 16:17:55 by sivinska          #+#    #+#             */
+/*   Updated: 2018/09/20 16:25:36 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	rotate_b_helper(t_data *data)
+void	smallest_infour(t_data *data)
 {
-	rotate_b(data);
-	ft_add_step(data, TYPE_RB);
-}
-
-static void	rr_b_helper(t_data *data)
-{
-	reverse_rotate_b(data);
-	ft_add_step(data, TYPE_RRB);
-}
-
-static void	push_a_helper(t_data *data)
-{
-	push_to_a(data);
-	ft_add_step(data, TYPE_PA);
-}
-
-static void	using_helper(t_data *data, int using)
-{
-	if (using)
+	while (data->size_a == 4)
 	{
-		if (data->size_b == 0 && is_sorted(data->a))
-			return ;
-		rotate_a(data);
-		ft_add_step(data, TYPE_RA);
+		if (data->a->number == smallest_number(data->a))
+		{
+			push_to_b(data);
+			ft_add_step(data, TYPE_PB);
+		}
+		else
+		{
+			rotate_a(data);
+			ft_add_step(data, TYPE_RA);
+		}
 	}
 }
 
-void		shortest_path_b(t_data *data, int biggest, int smallest)
+int		exist_below(t_data *data, int nbr)
 {
-	int		spr;
-	int		spl;
-	int		len_right;
-	int		len_left;
-	int		using;
+	t_elemt	*a;
 
-	spr = path_right(data->b, smallest);
-	spl = path_left(data->b, smallest);
-	len_left = path_finder(data->b, biggest, smallest, &len_right);
-	using = 0;
-	if (len_right < len_left)
+	a = data->a;
+	while (a)
 	{
-		using = (len_right == spr) ? 1 : using;
-		while (len_right--)
-			rotate_b_helper(data);
+		if (a->number < nbr)
+			return (1);
+		a = a->next;
+		if (a == data->a)
+			break ;
 	}
-	else
-	{
-		using = (len_left == spl) ? 1 : using;
-		while (len_left--)
-			rr_b_helper(data);
-	}
-	push_a_helper(data);
-	using_helper(data, using);
+	return (0);
 }

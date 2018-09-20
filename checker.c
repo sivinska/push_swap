@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 09:57:31 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/20 11:40:54 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/20 16:58:46 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static int	get_the_line(char *command, t_data *data)
 	free(command);
 	return (0);
 }
+
 
 int			main(int argc, char **argv)
 {

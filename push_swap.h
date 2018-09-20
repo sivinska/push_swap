@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:34:35 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/20 14:04:25 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/20 16:23:07 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ void				dummy_sort(int **list, int stack_size);
 void				presort_b(t_data *data);
 void				sort_a(t_data *data);
 void				push_rotate_a(t_data *data);
-
+void				smallest_infour(t_data *data);
+int					exist_below(t_data *data, int nbr);
 
 void				wipe_element(t_elemt *list);
 void				wipe_data(t_data **data);

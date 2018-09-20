@@ -4,7 +4,8 @@ NAME_2 = push_swap
 
 SRC = check_parameters.c commander.c  utilities.c smart_sorting.c \
 	utilities2.c optimizer.c swap.c rotate.c reverse_rotate.c push.c parser.c \
-	sort_big.c wipe_data.c median_and_average.c visual.c sorting_five.c
+	sort_big.c wipe_data.c median_and_average.c visual.c sorting_five.c \
+	shortest_path.c
 
 OBJ = $(SRC:.c=.o)
 
