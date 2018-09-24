@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sivinska <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/09/24 16:02:10 by sivinska          #+#    #+#              #
+#    Updated: 2018/09/24 16:38:45 by sivinska         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME_1 = checker
 
 NAME_2 = push_swap
@@ -5,7 +17,7 @@ NAME_2 = push_swap
 SRC = check_parameters.c commander.c  utilities.c smart_sorting.c \
 	utilities2.c optimizer.c swap.c rotate.c reverse_rotate.c push.c parser.c \
 	sort_big.c wipe_data.c median_and_average.c visual.c sorting_five.c \
-	shortest_path.c
+	shortest_path.c push_smallest.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -16,8 +28,7 @@ LIB_PATH = libft
 LIB_LINK = -L $(LIB_PATH) -lft
 LIB = $(LIB_PATH)/libft.a
 
-FLAGS = -Wall -Wextra -Werror 
-#-g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 
 all: colour $(NAME_1) $(NAME_2)
 	@echo "Checker and push_swap created."

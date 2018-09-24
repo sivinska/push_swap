@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 09:57:31 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/20 16:34:31 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/24 16:38:24 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ void		wipe_element(t_elemt *list)
 {
 	t_elemt *tmp;
 
-	while (list->end != 1)
+	if (list)
 	{
-		tmp = list;
-		list = list->next;
-		free(tmp);
+		while (list->end != 1)
+		{
+			tmp = list;
+			list = list->next;
+			free(tmp);
+		}
 	}
 	free(list);
 }

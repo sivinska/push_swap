@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 09:57:31 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/20 16:58:46 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/24 16:36:29 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	get_the_line(char *command, t_data *data)
 	{
 		if (commander(data, command) == 0)
 		{
-			ft_putendl_fd("Error: invalid command", 2);
+			ft_putendl_fd("Error", 2);
 			free(command);
 			wipe_data(&data);
 			return (1);
@@ -31,6 +31,22 @@ static int	get_the_line(char *command, t_data *data)
 	return (0);
 }
 
+static int	do_checking(t_elemt *list, t_data *data, char *command, int visual)
+{
+	if (duplicate(list, data) == 0)
+	{
+		wipe_data(&data);
+		return (0);
+	}
+	load_offsets(data);
+	data->visual = visual;
+	if (get_the_line(command, data) == 1)
+		return (1);
+	(is_sorted(data->a) == 1 && data->b == NULL ? \
+	ft_putendl("OK") : ft_putendl("KO"));
+	wipe_data(&data);
+	return (0);
+}
 
 int			main(int argc, char **argv)
 {
@@ -46,22 +62,11 @@ int			main(int argc, char **argv)
 		return (1);
 	if (parser(argc, argv, &list, &visual) == 0)
 	{
-		ft_putendl_fd("Error: invalid input", 2);
+		ft_putendl_fd("Error", 2);
 		wipe_element(list);
 		return (1);
 	}
 	data = create_table(list);
-	if (duplicate(list, data) == 0)
-	{
-		wipe_data(&data);
-		return (0);
-	}
-	load_offsets(data);
-	data->visual = visual;
-	if (get_the_line(command, data) == 1)
-		return (1);
-	(is_sorted(data->a) == 1 && data->b == NULL ? \
-	ft_putendl("OK") : ft_putendl("KO"));
-	wipe_data(&data);
+	do_checking(list, data, command, visual);
 	return (0);
 }

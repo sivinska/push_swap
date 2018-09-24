@@ -6,44 +6,41 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 10:05:15 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/20 13:37:13 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/24 15:56:01 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
 
-void	load_offsets(t_data *data)
+void		load_offsets(t_data *data)
 {
 	t_elemt	*cpy;
 
 	cpy = data->a;
 	while (cpy)
 	{
-		if (ft_get_nbr_len(cpy->number) > data->offsets)
-			data->offsets = ft_get_nbr_len(cpy->number);
+		if (ft_get_nbr_len_push(cpy->number) > data->offsets)
+			data->offsets = ft_get_nbr_len_push(cpy->number);
 		cpy = cpy->next;
 		if (cpy == data->a)
 			break ;
 	}
 }
 
-void	print_header(t_data *data)
+static void	print_header(t_data *data)
 {
-	(void)data;
-	ft_putendl("Stacks");
-	ft_putstr("a");
+	ft_putstr("A");
 	fill_with_char(data->offsets - 1, ' ');
 	ft_putstr("|");
 	fill_with_char(data->offsets - 1, ' ');
-	ft_putendl("b");
+	ft_putendl("B");
 	fill_with_char((data->offsets) * 2 + 1, '-');
 	ft_putchar('\n');
 }
 
-void	print_elemt(t_data *data, t_elemt **stack, t_elemt *target)
+static void	print_elemt(t_elemt **stack, t_elemt *target)
 {
-	(void)data;
 	if (*stack)
 	{
 		ft_putnbr((*stack)->number);
@@ -55,7 +52,7 @@ void	print_elemt(t_data *data, t_elemt **stack, t_elemt *target)
 		ft_putchar(' ');
 }
 
-void	print_stacks(t_data *data)
+static void	print_stacks(t_data *data)
 {
 	t_elemt		*a;
 	t_elemt		*b;
@@ -66,34 +63,34 @@ void	print_stacks(t_data *data)
 	while (a || b)
 	{
 		if (a)
-			len = ft_get_nbr_len(a->number);
+			len = ft_get_nbr_len_push(a->number);
 		else
 			len = 0;
-		print_elemt(data, &a, data->a);
 		if (len)
 			fill_with_char(data->offsets - len, ' ');
 		else
-			fill_with_char(data->offsets - 1, ' ');
+			fill_with_char(data->offsets - len - 1, ' ');
+		print_elemt(&a, data->a);
 		ft_putstr("|");
 		if (b)
-			fill_with_char(data->offsets - ft_get_nbr_len(b->number), ' ');
+			fill_with_char(data->offsets - ft_get_nbr_len_push(b->number), ' ');
 		else
-			fill_with_char(data->offsets - 1, ' ');
-		print_elemt(data, &b, data->b);
+			fill_with_char(data->offsets, ' ');
+		print_elemt(&b, data->b);
 		ft_putstr("\n");
 	}
 }
 
-void	visual(t_data *data, char *command)
+void		visual(t_data *data, char *command)
 {
-	static int total = 0;
+	static int total;
 
 	if (data->visual == 0)
 		return ;
 	ft_putstr("\e[1;1H\e[2J");
 	print_header(data);
 	print_stacks(data);
-	ft_putstr("\nCurrent command:");
+	ft_putstr("\nCurrent command: ");
 	if (command)
 	{
 		ft_putendl(command);
@@ -104,5 +101,5 @@ void	visual(t_data *data, char *command)
 	ft_putstr("Total: ");
 	ft_putnbr(total);
 	ft_putchar('\n');
-	usleep(15000);
+	usleep(200000);
 }
