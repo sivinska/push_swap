@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:34:35 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/24 16:40:44 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/25 15:25:24 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct		s_elemt
 	struct s_elemt	*next;
 	struct s_elemt	*previous;
 	int				end;
-	int				count;
 }					t_elemt;
 
 typedef struct		s_data
