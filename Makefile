@@ -6,7 +6,7 @@
 #    By: sivinska <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/24 16:02:10 by sivinska          #+#    #+#              #
-#    Updated: 2018/09/24 16:38:45 by sivinska         ###   ########.fr        #
+#    Updated: 2018/09/25 13:34:10 by sivinska         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ LIB_PATH = libft
 LIB_LINK = -L $(LIB_PATH) -lft
 LIB = $(LIB_PATH)/libft.a
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror 
+#-g -fsanitize=address
 
 all: colour $(NAME_1) $(NAME_2)
 	@echo "Checker and push_swap created."

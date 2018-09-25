@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 12:05:01 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/24 16:21:43 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/25 13:24:51 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int		parser(int argc, char **argv, t_elemt **list, int *visual)
 	{
 		if (ft_isnumeric(argv[i]))
 		{
+			if (!check_digits((argv[i])))
+				return (0);
 			fill_elements(list, ft_atoi(argv[i]));
 		}
 		else

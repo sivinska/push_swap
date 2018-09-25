@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 09:57:31 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/24 16:38:24 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/25 13:42:46 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ void		wipe_element(t_elemt *list)
 
 static void	wipe_stacks(t_elemt *a, t_elemt *b, t_elemt *tmp)
 {
+	t_elemt *cpy;
+
+	cpy = b;
 	if (a)
 	{
 		while (a->end != 1)
@@ -42,13 +45,14 @@ static void	wipe_stacks(t_elemt *a, t_elemt *b, t_elemt *tmp)
 	}
 	if (b)
 	{
-		while (b->end != 1)
+		while (b)
 		{
 			tmp = b;
 			b = b->next;
 			free(tmp);
+			if (b == cpy)
+				break ;
 		}
-		free(b);
 	}
 }
 

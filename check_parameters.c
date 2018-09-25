@@ -6,28 +6,11 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:07:12 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/20 11:09:20 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/25 13:43:11 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*
-**int		is_reverse_sorted(t_element *list)
-**{
-**	while (list)
-**	{
-**		if (list->end)
-**			break ;
-**		if (list->number <= list->next->number)
-**			return (0);
-**		if (list->end)
-**			break ;
-**		list = list->next;
-**	}
-**	return (1);
-**}
-*/
 
 int		duplicate(t_elemt *list, t_data *data)
 {

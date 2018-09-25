@@ -6,7 +6,7 @@
 /*   By: sivinska <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 15:38:15 by sivinska          #+#    #+#             */
-/*   Updated: 2018/09/24 16:29:06 by sivinska         ###   ########.fr       */
+/*   Updated: 2018/09/25 14:21:03 by sivinska         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void		do_sorting(t_data *data)
 {
+	if (is_sorted(data->a))
+		return ;
 	if (data->count < 6)
 		sorting_five(data);
 	else if (data->count <= 100)
